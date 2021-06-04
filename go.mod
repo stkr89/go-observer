@@ -1,1 +1,1 @@
-module "goobserver"
+module "github.com/stkr89/goobserver"
