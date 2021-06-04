@@ -5,13 +5,25 @@ goobserver provides helper methods to implement observer pattern in go.
 ### Subscribe to topic
 
 ```go
-import obs "github.com/stkr89/goobserver"
+import (
+    "github.com/stkr89/goobserver"
+)
+
+var observer *goobserver.GoObserver
+
+func GetObserver() *goobserver.GoObserver {
+    if observer == nil {
+        observer = goobserver.NewGoObserver()
+    }
+
+    return observer
+}
 
 func MyFunc(payload []byte) {
     fmt.println(string(payload))
 }
 
-err := liger.Subscribe("my-topic", Myfunc)
+err := GetObserver().Subscribe("my-topic", Myfunc)
 if err != nil {
     fmt.println(err)
 }
@@ -20,8 +32,6 @@ if err != nil {
 ### Publish to topic
 
 ```go
-import "github.com/stkr89/goobserver"
-
 type User struct {
     FirstName string `json:"first_name"`
     LastName  string `json:"last_name"`
@@ -34,5 +44,5 @@ bytes, _ := json.Marshal(User{
     Email: "foo.bar@email.com"
 })
 
-err := liger.Publish("my-topic", bytes)
+err := GetObserver().Publish("my-topic", bytes)
 ```
