@@ -5,7 +5,7 @@ goobserver provides helper methods to implement observer pattern in go.
 ### Subscribe to topic
 
 ```go
-import "github.com/stkr89/goobserver"
+import obs "github.com/stkr89/goobserver"
 
 func MyFunc(payload []byte) {
     fmt.println(string(payload))
@@ -20,7 +20,7 @@ if err != nil {
 ### Publish to topic
 
 ```go
-import "github.com/stkr89/liger"
+import "github.com/stkr89/goobserver"
 
 type User struct {
     FirstName string `json:"first_name"`

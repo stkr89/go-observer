@@ -4,17 +4,17 @@ import (
 	"errors"
 )
 
-type ligerService struct {
+type goObserverService struct {
 	store map[string][]*funcType
 }
 
-func newLigerService() *ligerService {
-	return &ligerService{
+func newGoObserverService() *goObserverService {
+	return &goObserverService{
 		store: map[string][]*funcType{},
 	}
 }
 
-func (l *ligerService) addSubscriber(topic string, callback *funcType) error {
+func (l *goObserverService) addSubscriber(topic string, callback *funcType) error {
 	if topic == "" {
 		return errors.New(TopicInvalid)
 	}
@@ -24,7 +24,7 @@ func (l *ligerService) addSubscriber(topic string, callback *funcType) error {
 	return nil
 }
 
-func (l *ligerService) removeSubscriber(topic string, funcName string) error {
+func (l *goObserverService) removeSubscriber(topic string, funcName string) error {
 	if _, ok := l.store[topic]; !ok {
 		return errors.New(TopicNotFound)
 	}
@@ -46,7 +46,7 @@ func (l *ligerService) removeSubscriber(topic string, funcName string) error {
 	return nil
 }
 
-func (l *ligerService) getSubscriberNames(topic string) ([]string, error) {
+func (l *goObserverService) getSubscriberNames(topic string) ([]string, error) {
 	if _, ok := l.store[topic]; !ok {
 		return nil, errors.New(TopicNotFound)
 	}
@@ -60,7 +60,7 @@ func (l *ligerService) getSubscriberNames(topic string) ([]string, error) {
 	return funcNames, nil
 }
 
-func (l *ligerService) getTopics() []string {
+func (l *goObserverService) getTopics() []string {
 	var topicNames []string
 
 	for k, _ := range l.store {
@@ -70,7 +70,7 @@ func (l *ligerService) getTopics() []string {
 	return topicNames
 }
 
-func (l *ligerService) deleteTopic(topic string) error {
+func (l *goObserverService) deleteTopic(topic string) error {
 	if _, ok := l.store[topic]; !ok {
 		return errors.New(TopicNotFound)
 	}
@@ -80,11 +80,11 @@ func (l *ligerService) deleteTopic(topic string) error {
 	return nil
 }
 
-func (l *ligerService) deleteAllTopics() {
+func (l *goObserverService) deleteAllTopics() {
 	l.store = map[string][]*funcType{}
 }
 
-func (l *ligerService) publish(topic string, payload []byte) error {
+func (l *goObserverService) publish(topic string, payload []byte) error {
 	if _, ok := l.store[topic]; !ok {
 		return errors.New(TopicNotFound)
 	}
