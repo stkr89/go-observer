@@ -2,7 +2,7 @@
 
 goobserver provides helper methods to implement observer pattern in go.
 
-### Subscribe to topic
+### Subscribe to topic(s)
 
 ```go
 import (
@@ -19,17 +19,28 @@ func GetObserver() *goobserver.GoObserver {
     return observer
 }
 
-func MyFunc(payload []byte) {
+func MyFunc1(payload []byte) {
     fmt.println(string(payload))
 }
 
-err := GetObserver().Subscribe("my-topic", Myfunc)
-if err != nil {
-    fmt.println(err)
+func MyFunc2(payload []byte) {
+    fmt.println(string(payload))
+}
+
+func main() {
+    err := GetObserver().Subscribe("my-topic-1", Myfunc1)
+    if err != nil {
+        fmt.println(err)
+    }
+    
+    err := GetObserver().Subscribe("my-topic-2", Myfunc2)
+    if err != nil {
+        fmt.println(err)
+    }
 }
 ```
 
-### Publish to topic
+### Publish to topic(s)
 
 ```go
 type User struct {
@@ -44,5 +55,8 @@ bytes, _ := json.Marshal(User{
     Email: "foo.bar@email.com"
 })
 
-err := GetObserver().Publish("my-topic", bytes)
+err := GetObserver().Publish("my-topic-1", bytes)
+if err != nil {
+    fmt.println(err)
+}
 ```
