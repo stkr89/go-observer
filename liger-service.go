@@ -1,4 +1,4 @@
-package goObserver
+package goobserver
 
 import (
 	"errors"

@@ -1,4 +1,4 @@
-package goObserver
+package goobserver
 
 const (
 	TopicInvalid  = "topic name is invalid"

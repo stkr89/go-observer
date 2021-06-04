@@ -1,4 +1,4 @@
-package goObserver
+package goobserver
 
 type funcType struct {
 	FuncName string

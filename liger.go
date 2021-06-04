@@ -1,4 +1,4 @@
-package goObserver
+package goobserver
 
 type Liger struct {
 	*ligerService

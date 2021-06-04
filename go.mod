@@ -1,1 +1,1 @@
-module "goObserver"
+module "goobserver"

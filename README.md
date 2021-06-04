@@ -1,11 +1,11 @@
-# go-observer
+# goobserver
 
-go-observer provides helper methods to implement observer pattern in go.
+goobserver provides helper methods to implement observer pattern in go.
 
 ### Subscribe to topic
 
 ```go
-import "github.com/stkr89/liger"
+import "github.com/stkr89/goobserver"
 
 func MyFunc(payload []byte) {
     fmt.println(string(payload))
